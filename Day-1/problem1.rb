@@ -1,6 +1,3 @@
-require 'nokogiri'
-require 'open-uri'
-
 file_path = 'file.txt'
 
 arr = []
@@ -33,7 +30,7 @@ arr.each do |word|
       n[1]= letter.to_i
     end
   end
-  num= n.join.to_i
+  num = n.join.to_i
   sum += num
 end
 
