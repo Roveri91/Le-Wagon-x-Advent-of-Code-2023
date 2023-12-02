@@ -20,6 +20,7 @@ games.each do |string|
   h[k] = v
 end
 
+tot = 0
 
 h.each do |key, value|
    counter = { "blue" => 0,
@@ -34,6 +35,9 @@ h.each do |key, value|
     counter[k] += v.to_i
   end
 
-  p counter
-  p "+++++++++++++++++++++++++++++++++"
+  if (counter["blue"] < blue && counter["green"] < green && counter["red"] < red )
+    tot += key.to_i
+  end
 end
+
+p tot
