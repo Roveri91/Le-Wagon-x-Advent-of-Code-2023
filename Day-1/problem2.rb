@@ -1,5 +1,6 @@
 file_path = 'file.txt'
-
+sum = 0
+regex = /\d|[[:alpha:]]+/
 arr = []
 
 # Open the file in read mode ('r')
@@ -20,15 +21,14 @@ arr = [
   "7pqrstsixteen"
 ]
 
-regex = /\d|[[:alpha:]]+/
 arr.each do |word|
   n = []
   num = 0
-  word = word
-  n[0] = word.find { |x| x.match?(regex) }
-  n[1] = word.select { |x| x.match?(regex) }.last
-  num= n.join.to_i
-  sum += num
+  # p first_digit_or_number = word[/\d+|[[:alpha:]]+/]
+  # p n[0] = word.scan(regex).first
+  #  n[1] = word.scan(regex).last
+  # num= n.join.to_i
+  # sum += num
 end
 
 
