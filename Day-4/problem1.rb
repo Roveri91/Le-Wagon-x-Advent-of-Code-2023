@@ -2,21 +2,37 @@
 
 # As far as the Elf has been able to figure out, you have to figure out which of the numbers you have appear in the list of winning numbers. The first match makes the card worth one point and each match after the first doubles the point value of that card.
 
+def calculate_score(matches)
+  return 0 if matches == 0
 
-line = "Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53"
+  matches -=1
 
-splitted = line.split(/:|\|/)
+  score = 1
 
-winning_numbers = splitted[1].split(" ")
-list_numbers = splitted[2].split(" ")
+  matches.times do
+    score *= 2
+  end
 
-p "winning_number #{winning_numbers}"
-p "list number #{list_numbers}"
-
-count = 0
-winning_numbers.each do |number|
-  count+=1 if list_numbers.include?(number)
+  return score
 end
 
-count *= 2 if count > 1
-p "count #{count}"
+total_score = 0
+
+File.read('file.txt').split("\n").each do |line|
+  splitted = line.split(/:|\|/)
+
+  winning_numbers = splitted[1].split(" ")
+  list_numbers = splitted[2].split(" ")
+
+  matches = 0
+  winning_numbers.each do |number|
+    matches+=1 if list_numbers.include?(number)
+  end
+
+  score = calculate_score(matches)
+
+  total_score += score
+
+end
+
+p "total is #{total_score}"
