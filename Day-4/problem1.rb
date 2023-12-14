@@ -7,4 +7,16 @@ line = "Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53"
 
 splitted = line.split(/:|\|/)
 
-p splitted
+winning_numbers = splitted[1].split(" ")
+list_numbers = splitted[2].split(" ")
+
+p "winning_number #{winning_numbers}"
+p "list number #{list_numbers}"
+
+count = 0
+winning_numbers.each do |number|
+  count+=1 if list_numbers.include?(number)
+end
+
+count *= 2 if count > 1
+p "count #{count}"
