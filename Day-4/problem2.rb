@@ -14,24 +14,35 @@ end
 
 
 File.read('file.txt').split("\n").each do |line|
+
+  # get current card ID
   splitted = line.split(/:|\|/)
-  card = splitted.first.split(" ").last.to_i
-
-  hash[card].times do
-    winning_numbers = splitted[1].split(" ")
-    list_numbers = splitted[2].split(" ")
-
-    matches = 0
-    winning_numbers.each do |number|
-      matches+=1 if list_numbers.include?(number)
-    end
+  current_card = splitted.first.split(" ").last.to_i
 
 
+  # get winning number and list number for each card
+  winning_numbers = splitted[1].split(" ")
+  list_numbers = splitted[2].split(" ")
 
+  # find the matches checking if the winning number is included in the list number
+  matches = 0
+  winning_numbers.each do |number|
+    matches+=1 if list_numbers.include?(number)
   end
 
+  # if there is at least one match for this card
+  if matches > 0
+    # from the next card to the (number of matches)'s card
+    (1..matches).each do |index|
+      # check if we didn't go to far
+      if hash.has_key?(current_card+index)
+        # increment the number of copy
+        hash[current_card+index] += hash[current_card]
+      end
+    end
+  end
 
-  # card = splitted.first.gsub("Card ")
-  # p "card #{card}"
-  # p "type #{card.class}"
 end
+
+# print the sum of al hash's values
+p sum_of_values = hash.values.sum
