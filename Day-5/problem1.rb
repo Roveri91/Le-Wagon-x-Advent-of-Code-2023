@@ -1,3 +1,17 @@
-File.read("file.txt").split(/[-a-zA-Z:]+/).each do |arr|
-  p arr
-end
+data = File.read("file.txt").split(/[-a-zA-Z:]+/).reject(&:empty?)
+
+p "seeds -> #{seeds = data.first}"
+p "    "
+p "seed-to-soil -> #{to_soils = data[2]}"
+p "    "
+p "soil-to-fertilizer -> #{to_fertilizer = data[4]}"
+p "    "
+p "fertilizer-to-water -> #{to_water = data[6]}"
+p "    "
+p "water-to-light -> #{to_light = data[8]}"
+p "    "
+p "light-to-temperature -> #{to_temperature = data[10]}"
+p "    "
+p "temperature-to-humidity -> #{to_humidity = data[12]}"
+p "    "
+p "humidity-to-location -> #{to_location = data[14]}"
