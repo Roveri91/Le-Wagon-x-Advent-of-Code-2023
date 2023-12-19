@@ -3,7 +3,7 @@ sum = 0
 regex = /\d|[[:alpha:]]+/
 arr = []
 
-Open the file in read mode ('r')
+# Open the file in read mode ('r')
 File.open(file_path, 'r') do |file|
   # Read each line of the file and append it to the array
   file.each_line do |line|
