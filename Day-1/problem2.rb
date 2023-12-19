@@ -3,33 +3,48 @@ sum = 0
 regex = /\d|[[:alpha:]]+/
 arr = []
 
-# Open the file in read mode ('r')
-# File.open(file_path, 'r') do |file|
-#   # Read each line of the file and append it to the array
-#   file.each_line do |line|
-#     arr << line.chomp  # chomp removes the newline character
-#   end
-# end
+Open the file in read mode ('r')
+File.open(file_path, 'r') do |file|
+  # Read each line of the file and append it to the array
+  file.each_line do |line|
+    arr << line.chomp  # chomp removes the newline character
+  end
+end
 
-arr = [
-  "two1nine",
-  "eightwothree",
-  "abcone2threexyz",
-  "xtwone3four",
-  "4nineeightseven2",
-  "zoneight234",
-  "7pqrstsixteen"
-]
+# arr = [
+#   "two1nine",
+#   "eightwothree",
+#   "abcone2threexyz",
+#   "xtwone3four",
+#   "4nineeightseven2",
+#   "zoneight234",
+#   "7pqrstsixteen"
+# ]
 
-arr.each do |word|
-  n = []
-  num = 0
-  # p first_digit_or_number = word[/\d+|[[:alpha:]]+/]
-  # p n[0] = word.scan(regex).first
-  #  n[1] = word.scan(regex).last
-  # num= n.join.to_i
-  # sum += num
+def insert_digit(word)
+  numbers = {'one' => 'o1e', 'two' => 't2o', 'three' => 't3e', 'four' => 'f4r',
+  'five' => 'f5e', 'six' => 's6x', 'seven' => 's7n', 'eight' => 'e8t', 'nine' => 'n9e'}
+  numbers.each { |number, digit| word.gsub!(number, digit) if word.include?(number) }
 end
 
 
+arr.each do |word|
+  p word
+  insert_digit(word)
+  p word
+  n = []
+  num = 0
+  first = true
+  word.each_char do |letter|
+    if letter.match?(/\d/) && (first == true)
+      first = false
+      n[0]= letter.to_i
+      n[1]= letter.to_i
+    elsif letter.match?(/\d/)
+      n[1]= letter.to_i
+    end
+  end
+  p num = n.join.to_i
+  sum += num
+end
 p sum
